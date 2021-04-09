@@ -1,0 +1,44 @@
+<!-- <p>login works!</p> -->
+<!-- userName : {{userName}} -->
+<!-- [value]="userName" -->
+<!-- [disabled]="!listFilter" -->
+
+<br />
+<div appHighLight *ngIf="!isLoggedIn; else Welcome">
+  <div>
+    <input
+      type="text"
+      [(ngModel)]="userName"
+      name="userName"
+      (input)="onInput()"
+    />
+  </div>
+  <br />
+  <div>
+    <input
+      type="button"
+      value="login"
+      [disabled]="!userName"
+      class="btn btn-primary"
+      (click)="login()"
+    />
+  </div>
+</div>
+
+<ng-template #Welcome>
+  <div>
+    <input type="text" name="userName" (input)="onInput()" />
+  </div>
+  <br />
+  <div>
+    <span>welcome {{ userName }}</span>
+  </div>
+
+  <!-- <div>
+          <input 
+          type="button"
+          value="logout"
+          (click)="logout()"
+           />
+        </div> -->
+</ng-template>
