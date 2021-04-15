@@ -1,0 +1,18 @@
+<p>courses-list works!</p>
+<!-- [course]="singleCourse" -->
+
+<ul>
+  <li
+    class="list-group"
+    class="p-1 mt-1 list-group-item"
+    [ngClass]="{
+      'list-group-item-danger': !singleCourse.isAvailabel,
+      'list-group-item-success': singleCourse.isAvailabel
+    }"
+    *ngFor="let singleCourse of courses"
+    [routerLink]="[singleCourse.id]"
+  >
+    {{ singleCourse.title }}
+    <!-- {{ singleCourse.id }} -->
+  </li>
+</ul>
