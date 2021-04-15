@@ -12,7 +12,7 @@ import { CourseFormComponent } from './course-form/course-form.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CourseItemComponent } from './course-item/course-item.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     CourseDetailsComponent,
     CourseItemComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   // providers: [CoursesService]
