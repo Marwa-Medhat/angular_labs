@@ -19,7 +19,7 @@ const routes: Routes = [
       {
         path: 'new',
         component: CourseReactiveFormComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: ':id',
