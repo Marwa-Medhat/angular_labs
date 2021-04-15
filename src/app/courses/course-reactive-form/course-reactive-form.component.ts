@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CoursesService } from '../services/courses.service';
 
@@ -9,15 +9,35 @@ import { CoursesService } from '../services/courses.service';
   styleUrls: ['./course-reactive-form.component.scss'],
 })
 export class CourseReactiveFormComponent implements OnInit {
-  constructor() {}
+  errors = [];
+
+  courseForm: FormGroup = this._fb.group({
+    title: ['', Validators.required],
+    instructor: ['', Validators.required],
+    isAvailabel: [false],
+  });
+
+  constructor(
+    private _fb: FormBuilder,
+    private _coursesService: CoursesService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {}
-  onSubmit(form: NgForm) {
-    console.log(form);
 
+  onSubmit(form: FormGroup) {
     if (form.valid) {
       const course = form.value;
-      console.log(course);
+      this._coursesService.addCourse(course).subscribe(
+        (res: any) => {
+          this.errors = [];
+          this._router.navigate(['/courses', res.data.id]);
+        },
+        (err: any) => {
+          console.log(err);
+          this.errors = err.error.error || [];
+        }
+      );
     }
   }
 }
